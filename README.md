@@ -2,6 +2,10 @@
 
 A comprehensive, responsive business dashboard built with Next.js and Tailwind CSS, featuring mobile-first design and full dark mode support.
 
+## 🌐 Live Demo
+
+**[🚀 View Live Demo](https://strong-horse-e35827.netlify.app/)** - Experience the dashboard in action!
+
 ## 🚀 Features
 
 ### 📱 **Mobile-First Responsive Design**
