@@ -5,7 +5,11 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "./node_modules/next/dist/bin/next start",
+    "start-dev": "next start",
+    "lint": "next lint",
+    "deploy": "./node_modules/pm2/bin/pm2-runtime start npm --name \"kazam-web-frontend\" -- start",
+    "optimize-images": "node scripts/optimize-images.js"
   },
   "dependencies": {
     "react": "19.1.0",

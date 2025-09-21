@@ -14,13 +14,297 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #111827;
+    --foreground: #f9fafb;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #f9fafb;
+  color: #171717;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Cross-browser compatibility */
+* {
+  box-sizing: border-box;
+}
+
+/* Smooth scrolling for better UX */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar for better aesthetics */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Enhanced focus states for accessibility */
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Reduced motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --background: #ffffff;
+    --foreground: #000000;
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --background: #000000;
+      --foreground: #ffffff;
+    }
+  }
+}
+
+/* Ultra-responsive mobile viewport fixes */
+@media (max-width: 1023px) {
+  html, body {
+    height: 100%;
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  /* Force mobile layout */
+  .mobile-force-layout {
+    display: block !important;
+  }
+  
+  /* Hide desktop elements on mobile */
+  .desktop-only {
+    display: none !important;
+  }
+  
+  /* Show mobile elements */
+  .mobile-only {
+    display: block !important;
+  }
+  
+  /* Prevent blank space at bottom on mobile */
+  .mobile-layout {
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+  }
+  
+  /* Fix for iOS Safari viewport height */
+  .mobile-content {
+    min-height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+  }
+  
+  /* Prevent horizontal scroll */
+  .mobile-container {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+  
+  /* Ultra-responsive mobile navbar */
+  .mobile-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+  
+  /* Enhanced touch targets */
+  button, a, input, select, [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+    touch-action: manipulation;
+  }
+  
+  /* Improved mobile spacing */
+  .mobile-spacing {
+    padding: 1rem;
+  }
+  
+  /* Ultra-responsive cards */
+  .mobile-card {
+    margin-bottom: 0.75rem;
+    border-radius: 1rem;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .mobile-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Mobile-optimized forms */
+  input, select, textarea {
+    font-size: 16px; /* Prevents zoom on iOS */
+    border-radius: 0.75rem;
+  }
+  
+  /* Mobile grid improvements */
+  .mobile-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+  
+  /* Mobile typography */
+  .mobile-text {
+    line-height: 1.5;
+    letter-spacing: -0.01em;
+  }
+  
+  /* Mobile animations */
+  .mobile-animate {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* Mobile shadows */
+  .mobile-shadow {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+  
+  /* Mobile focus states */
+  .mobile-focus:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+  }
+}
+
+/* Desktop-specific optimizations */
+@media (min-width: 1024px) {
+  /* Hide mobile elements on desktop */
+  .mobile-only {
+    display: none !important;
+  }
+  
+  /* Show desktop elements */
+  .desktop-only {
+    display: block !important;
+  }
+  
+  /* Ensure desktop layout */
+  .desktop-force-layout {
+    display: flex !important;
+  }
+}
+
+/* Tablet-specific optimizations */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .tablet-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .tablet-sidebar {
+    width: 280px;
+  }
+}
+
+/* Mobile landscape optimizations */
+@media (max-width: 1023px) and (orientation: landscape) {
+  .mobile-navbar {
+    padding: 0.5rem 1rem;
+  }
+  
+  .mobile-content {
+    padding-top: 60px;
+  }
+}
+
+/* iOS Safari specific fixes */
+@supports (-webkit-touch-callout: none) {
+  .mobile-layout {
+    min-height: -webkit-fill-available;
+  }
+  
+  /* iOS-specific improvements */
+  input, select, textarea {
+    -webkit-appearance: none;
+    border-radius: 0.75rem;
+  }
+  
+  /* iOS scroll momentum */
+  .mobile-scroll {
+    -webkit-overflow-scrolling: touch;
+    overflow-y: auto;
+  }
+}
+
+/* Advanced mobile utilities */
+.mobile-safe-area {
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+.mobile-scroll-smooth {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+.mobile-touch-action {
+  touch-action: manipulation;
+}
+
+.mobile-select-none {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Mobile performance optimizations */
+.mobile-gpu {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  will-change: transform;
+}
+
+.mobile-reduce-motion {
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    background: white !important;
+    color: black !important;
+  }
 }
